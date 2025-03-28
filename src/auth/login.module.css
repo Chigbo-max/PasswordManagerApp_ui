@@ -1,0 +1,134 @@
+
+
+.logIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    gap: 2rem;
+}
+
+.form, .banner {
+    flex: 1;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;  
+    min-height: 400px;
+    margin-top: 5rem;
+}
+
+.form {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 350px;  
+}
+
+.banner img {
+    width: 100%;
+    max-width: 500px; 
+    height: auto;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #030F6D;
+}
+
+.form Button {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 15px;
+    border: none;
+    background-color: #030F6D;
+    color: white;
+    font-weight: bold;
+}
+
+.signUpContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.form Button:hover{
+    background-color: white;
+    color:#030F6D;
+    cursor: pointer;
+    border: 1px solid #030F6D;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    gap: 10px;
+    margin: 15px 0 15px 10px;
+}
+
+.forgetPassword{
+    color: #030F6D;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+    .signUp {
+        flex-direction: column;
+        padding: 20px;
+        gap: 1rem;
+        height: 100vh;
+    }
+
+    .banner {
+        display: none; 
+    }
+
+    .form {
+        width: 90%;
+        max-width: 100%;
+        min-height: auto;
+        padding: 1.5rem;
+        box-shadow: none;
+    }
+
+    .form input,
+    .form Button {
+        max-width: 100%;
+        font-size: 1rem;
+    }
+    
+   
+    .form::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .form::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    
+    .form::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+}
+
