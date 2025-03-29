@@ -7,8 +7,7 @@
     background-color: #ffff;
     gap: 2rem;
     padding: 0 0 5rem 0;
-    overflow: hidden;
-    padding: 200px;
+    /* padding: 200px; */
 }
 
 .form, .banner {
@@ -17,13 +16,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 400px;  
-    min-height: 400px;
-    margin-top: 10rem;
+    max-width: 300px;  
+    min-height: 250px;
 }
 
 .form {
-    margin-top: 50px;
+    margin-top: -10px;
     padding: 1rem;
     background-color: white;
     border-radius: 25px;
@@ -65,7 +63,6 @@
 
 .loginContainer {
     display: flex;
-    flex-direction: column;
     text-align: center;
     justify-content: center;
     margin: 10px 0;

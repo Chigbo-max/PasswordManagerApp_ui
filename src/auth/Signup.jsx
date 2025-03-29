@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import banner from "../assets/safepass.jpg";
 import Style from './signUp.module.css';
 import Button from "../reusables/Button";
@@ -12,7 +12,7 @@ function SignUp() {
     const [successMessage, setSuccessMessage] = useState("");
     const [form, setForm] = useState({
         email: "",
-        password: "",
+        master_password: "",
     });
 
     const handleFormChange = (event) => {
@@ -25,10 +25,14 @@ function SignUp() {
         try {
             const response = await signUp(form).unwrap();
             console.log(response);
+
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("role", response.role);
+
             setSuccessMessage("Sign up successful... redirecting");
 
             setTimeout(() => {
-                navigate("/");
+                response.role === "admin" ? navigate("/admin/dashboard") : navigate("/user/dashboard");
             }, 2000);
         } catch (error) {
             console.log("Sign up unsuccessful:", error);
@@ -43,10 +47,10 @@ function SignUp() {
                     <h2>Create your account</h2>
                     <p>It's pretty easy</p>
                     <div className={Style.inputContainer}>
-                        <input type="email" placeholder="Type your email address" value={form.email} name="email" onChange={handleFormChange} />
+                        <input type="email" placeholder="Type your email address" value={form.email} name="email" onChange={handleFormChange} required/>
                     </div>
                     <div className={Style.inputContainer}>
-                        <input type="password" placeholder="Master password" value={form.password} name="password" onChange={handleFormChange} />
+                        <input type="password" placeholder="Master password" value={form.master_password} name="master_password" onChange={handleFormChange} required/>
                     </div>
 
                     <div className={Style.buttonContainer}>
@@ -59,7 +63,7 @@ function SignUp() {
                     </div>
                     <div className={Style.loginContainer}>
                             <label>Already have an account?</label>
-                            <Button type= "button" onClick={() => navigate("/login")}  action={"Login"}></Button>
+                            <Link to="/login" >Login</Link>
                         </div>
                 </form>
                 </div>

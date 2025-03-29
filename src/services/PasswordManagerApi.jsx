@@ -16,7 +16,7 @@ export const passwordManagerApi = createApi({
     endpoints: (builder) => ({
         signUp: builder.mutation({
             query: (data) => ({
-                url: 'api/signup',
+                url: 'api/register',
                 method: 'POST',
                 body: data,
             }),
@@ -35,14 +35,17 @@ export const passwordManagerApi = createApi({
                     url: 'api/login',
                     method: 'POST',
                     body: loginData,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }, 
                 }),
             }),
 
-            resetPassword: builder.mutation({
-                query: (resetData) => ({
-                    url: 'api/reset-password',
+            forgetPassword: builder.mutation({
+                query: (forgetData) => ({
+                    url: 'api/forget-password',
                     method: 'POST',
-                    body: resetData,
+                    body: forgetData,
                 }),
             }),
 
@@ -57,6 +60,6 @@ export const passwordManagerApi = createApi({
     })
 })
 
-export const { useSignUpMutation, useresetPasswordConfirmMutation,
-     useResetPasswordMutation, useSaveCredentialsMutation,
+export const { useSignUpMutation, useResetPasswordConfirmMutation,
+     useForgetPasswordMutation, useSaveCredentialsMutation,
       useLoginMutation } = passwordManagerApi;

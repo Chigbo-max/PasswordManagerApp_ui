@@ -3,6 +3,7 @@ import { useSaveCredentialsMutation } from "../services/PasswordManagerApi";
 import { ClipLoader } from "react-spinners";
 import Button from "../reusables/Button";
 import Style from "./savecredentials.module.css";
+import {toast} from "react-toastify";
 
 
 const SaveCredentials = () => {
@@ -22,16 +23,16 @@ const SaveCredentials = () => {
         event.preventDefault();
         const token = localStorage.getItem('token');
         if (!token) {
-            alert("Please log in first!");
+            toast.error("Please log in first!");
             return;
         }
         try {
            await saveCredentials(formData).unwrap();
-            alert('Credentials saved successfully!');
+            toast.success('Credentials saved successfully!');
             setFormData({})
 
         } catch (error) {
-            alert('Failed to save: ' + (error.data?.message || error.message));
+            toast.error('Failed to save: ' + (error.data?.message || error.message));
 
         }
     };
@@ -59,7 +60,7 @@ const SaveCredentials = () => {
                     type="password"
                 />
 
-                <Button type="submit" onClick={handleSave} className={Style.button}
+                <Button type="submit" className={Style.button}
                  disabled={isLoading} action={isLoading ? <ClipLoader color="#ffff" size={50} /> : 'Save Credentials'}>
                  </Button>
                 {error && <p>Error: {error.data?.message}</p>}

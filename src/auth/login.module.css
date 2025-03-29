@@ -6,8 +6,9 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background-color: #fff;
+    background-color: #ffff;
     gap: 2rem;
+    padding: 0 0 5rem 0;
 }
 
 .form, .banner {
@@ -16,13 +17,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 400px;  
-    min-height: 400px;
-    margin-top: 5rem;
+    align-content: center;
+    max-width: 300px;  
+    min-height: 250px;
+
 }
 
 .form {
-    padding: 2rem;
+    margin-top: -10px;
+    padding: 1rem;
     background-color: white;
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -39,13 +42,15 @@
 
 }
 
-.form input {
+/* .form input {
     width: 100%;
     padding: 0.8rem;
     margin: 10px 0;
     border-radius: 10px;
     border: 1px solid #030F6D;
-}
+} */
+
+
 
 .form Button {
     width: 100%;
@@ -59,7 +64,6 @@
 
 .signUpContainer {
     display: flex;
-    flex-direction: column;
     text-align: center;
     justify-content: center;
     margin: 10px 0;
@@ -90,6 +94,30 @@
     justify-content: center;
 }
 
+.inputContainer{
+    position: relative;
+    width: 100%;
+}
+
+.inputContainer input{
+    width: 100%;
+    padding: 0.8rem;
+    padding-left: 2.5rem; 
+    border-radius: 10px;
+    border: 1px solid #030F6D;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-left: -0.8rem;
+
+}
+
+.inputIcon{
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #030F6D;
+}
 
 @media (max-width: 768px) {
     .signUp {

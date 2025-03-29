@@ -4,6 +4,7 @@ import Style from "./dashboard.module.css"
 function Dashboard() {
   return (
     <div>
+        DASHBOARD
       
     </div>
   )
