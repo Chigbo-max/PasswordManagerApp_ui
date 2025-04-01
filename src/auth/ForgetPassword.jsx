@@ -3,6 +3,7 @@ import Style from "./forgetpassword.module.css"
 import {useForgetPasswordMutation} from "../services/PasswordManagerApi"
 import { toast } from 'react-toastify';
 import Button from "../reusables/Button"
+import { ClipLoader } from 'react-spinners';
 
 function ForgetPassword() {
     const [email, setEmail] = useState("");
@@ -15,17 +16,18 @@ function ForgetPassword() {
                 await forgetPassword({email}).unwrap();
                 toast.success("Reset password link sent to your email address");
                 setEmail("");
-            } catch (err) {
-                toast.error("Failed to send reset password link. Please try again.", err);
+            } catch (error) {
+                toast.error("Failed to send reset password link. Please try again.", error);
             }
         }
     };
   return (
     <div className={Style.container}>
-        <h2 className={Style.heading}>Forgot Password</h2>
+        <h2 className={Style.heading}>Forgot Password?</h2>
+        <p>No worries...</p>
         <form className={Style.form} onSubmit={handleSubmit}>
         <div className={Style.formGroup}>
-        <label htmlFor="email">Email:</label>
+        {/* <label htmlFor="email"></label> */}
         <input type = "email"
         id="email"
         value={email}
@@ -35,15 +37,11 @@ function ForgetPassword() {
         />
         </div>
         <Button type="submit" className={Style.button}
-                 disabled={isLoading} action={isLoading ? <ClipLoader color="#ffff" size={50} /> : 'Send Reset Link'}>
+                 disabled={isLoading} action={isLoading ? <ClipLoader color="#ffff" size={50} /> : 'Request Reset Link'}>
                  </Button>
         </form>
 
-        {
-            isSuccess &&(
-                <p>Password reset email sent! Check you email for further instructions.</p>
-            )
-        }
+      
 
         {
             error && (

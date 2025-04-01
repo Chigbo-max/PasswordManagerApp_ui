@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
-import Style from "./resetpassword.module.css"
-import {useResetPasswordConfirmMutation} from "../services/PasswordManagerApi"
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import {toast} from "react-toastify"
-import Button from "../reusables/Button"
+import React, {useState} from 'react';
+import Style from "./resetpassword.module.css";
+import {useResetPasswordConfirmMutation} from "../services/PasswordManagerApi";
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import {toast} from "react-toastify";
+import {ClipLoader} from "react-spinners";
+import Button from "../reusables/Button";
+import Password from "../reusables/Password"
+import { validatePassword } from '../reusables/Validator';
 
 
 function ResetPassword() {
@@ -15,6 +18,24 @@ function ResetPassword() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const passwordValidation = validatePassword(newPassword);
+
+    if (!passwordValidation.isValid) {
+        toast.error(
+            <div>
+                <strong>Password requirements:</strong>
+                <ul style={{ marginTop: '5px', paddingLeft: '20px' }}>
+                    {passwordValidation.messages.map((msg, i) => (
+                        <li key={i}>{msg}</li>
+                    ))}
+                </ul>
+            </div>,
+            { autoClose: 5000 }
+        );
+        return;
+    }
+
     try{
       await resetPassword({reset_token: token, new_password: newPassword}).unwrap()
       toast.success("Password reset successful, redirecting to login page")
@@ -37,6 +58,10 @@ function ResetPassword() {
 
   }
 
+  const handleChange=(event)=>{
+    setNewPassword(event.target.value)
+  }
+
   return (
     <div className={Style.container}>
       <h2 className={Style.heading}>Reset Password</h2>
@@ -44,15 +69,26 @@ function ResetPassword() {
       <form onSubmit={handleSubmit} className={Style.form}>
         <div className={Style.formGroup}>
           <label htmlFor="newPassword">New Password</label>
-          <input type="password" id="newPassword"
+          <Password formData={newPassword} handleFormChange={handleChange} className={Style.input}/>
+
+          {/* <input type="password"
+           id="newPassword"
            value={newPassword}
-          onChange={(event) => setNewPassword(event.target.value)}
+           minLength={8}
+           maxLength={32}
+           pattern=".{8,32}"
+           title="Password must be 8-32 characters long"
+          onChange={handleChange}
           className={Style.input} required 
-          />
+          /> */}
         </div>
+
+    
+
+
         <Button type="submit"
          className={Style.button}
-        disabled={isLoading} action={isLoading ? <ClipLoader color="#ffff" size={50} /> : 'Reset Password'}>
+        disabled={isLoading} action={isLoading ? <ClipLoader color= "#36d7b7" size={50} /> : 'Reset Password'}>
         </Button>
          </form>
 

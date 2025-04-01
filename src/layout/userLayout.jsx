@@ -1,15 +1,65 @@
-import Sidebar from "../pages/User/Sidebar";
-import {Outlet} from "react-router-dom";
+import React, { useState, useEffect } from 'react'; 
+import { Outlet, useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import styles from './userLayout.module.css';
+import { useGetUserQuery } from '../services/PasswordManagerApi';
 
+const UserLayout = () => {
+    const navigate = useNavigate();
+    const { data: userData, error, isLoading } = useGetUserQuery();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-function UserLayout() {
-  return (
-    <div className="layout">
-      <Sidebar/>
-      <main>
-        <Outlet/>
-      </main>
-    </div>
-  )
-}
-export default UserLayout
+    useEffect(() => {
+        if (!isLoading) { 
+            if (!localStorage.getItem('access_token') || localStorage.getItem('role') !== 'user') {
+                console.log('UserLayout: Redirecting to /login due to missing token or invalid role');
+                navigate('/login');
+            }
+        }
+    }, [isLoading, navigate]); 
+
+    if (isLoading) return <div>Loading...</div>;
+
+    if (error) {
+        console.log('API Error:', error);
+        if (error.status === 401) {
+            console.log('Unauthorized - Redirecting to login');
+            localStorage.removeItem('access_token');
+            navigate('/login');
+            return null;
+        }
+    }
+
+    const userEmail = userData?.message?.email || 'user@safepass.com'; 
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    return (
+      <div className={styles.userLayout}>
+          <button
+              className={styles.hamburger}
+              onClick={toggleSidebar}
+              aria-label="Toggle Sidebar"
+          >
+              {isSidebarOpen ? '✕' : '☰'}
+          </button>
+          <div className={styles.layout}>
+              <Sidebar
+                  role="user"
+                  userName={userEmail}
+                  isOpen={isSidebarOpen}
+              />
+              <main className={`${styles.mainContent} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
+              <div className={styles.contentWrapper}>
+                  <Outlet />
+                  </div>
+              </main>
+             
+          </div>
+      </div>
+  );
+};
+
+export default UserLayout;

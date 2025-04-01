@@ -1,0 +1,95 @@
+.sidebar {
+    width: 250px;
+    background-color: #2b3d4fff;
+    color: white;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    padding: 1rem 0; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.userInfo {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #4a6278;
+}
+
+.userInfo h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.sidebarLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+}
+
+.sidebarLinks li {
+    padding: 1rem;
+    border-bottom: 1px solid #4a6278;
+}
+
+.sidebarLinks li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    display: block; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebarLinks li a:hover {
+    color: #3498db;
+}
+
+.logoutBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    padding: 1rem;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logoutBtn:hover {
+    color: red;
+}
+
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width:250px;
+        transform: translateX(-100%);
+        height: 100vh;
+    transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar.active ~ .mainContent {
+        transform: translateX(70%);
+        width: 100vw;
+        overflow-x: hidden; 
+      }
+}

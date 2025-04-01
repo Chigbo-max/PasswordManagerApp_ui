@@ -1,0 +1,25 @@
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.layout {
+    display: flex;
+    flex: 1;
+}
+
+.mainContent {
+    margin-left: 250px;
+    padding: 2rem;
+    flex: 1;
+    background-color: #ecf0f1;
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
