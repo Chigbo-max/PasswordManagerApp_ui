@@ -17,7 +17,7 @@ const Sidebar = (props) => {
     return (
         <div className={`${styles.sidebar} ${isOpen ? styles.active : ''}`}>
             <div className={styles.userInfo}>
-                <h3>Welcome, {userName || 'User'}</h3>
+                <h3>{userName || 'User'}</h3>
             </div>
             <ul className={styles.sidebarLinks}>
                 {role === 'user' ? (

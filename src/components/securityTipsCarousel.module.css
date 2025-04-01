@@ -1,0 +1,77 @@
+.carousel {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.tipContent {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    min-height: 80px;
+}
+
+.tipIcon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    margin-top: 0.2rem;
+}
+
+.tipContent h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.tipContent p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controlButton {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.controlButton:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.dots {
+    display: flex;
+    margin: 0 1rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #bdc3c7;
+    border: none;
+    padding: 0;
+    margin: 0 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.activeDot {
+    background-color: #3498db;
+    transform: scale(1.2);
+}

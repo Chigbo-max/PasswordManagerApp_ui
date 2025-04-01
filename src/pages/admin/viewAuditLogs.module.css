@@ -1,0 +1,242 @@
+
+.viewAuditLogs {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+    width: 100%;
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
+    
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 55rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.searchContainer {
+    position: relative;
+    min-width: 250px;
+    flex: 1;
+    max-width: 400px;
+}
+
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    background-color: #f8fafc;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    background-color: white;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+
+.logsTable th,
+.logsTable td {
+    padding: 1rem 1.25rem;
+    vertical-align: top;
+}
+
+
+
+.viewAuditLogs h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.viewAuditLogs h2 span {
+    color: #4f46e5;
+    font-weight: 700;
+}
+
+.logsTable {
+    width: auto;
+    min-width: 600px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.95rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    table-layout: auto; 
+}
+
+.logsTable th {
+    background: #4f46e5;
+    color: white;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+}
+
+.logsTable td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0;
+}
+
+
+
+
+
+.logsTable tr:last-child td {
+    border-bottom: none;
+}
+
+.logsTable tr:hover td {
+    background-color: #f8fafc;
+}
+
+.logsTable td:nth-child(3) {
+    font-weight: 600;
+}
+
+.logsTable tr:nth-child(odd) {
+    background-color: #f9fafb;
+}
+
+
+.logsTable th:nth-child(1), 
+.logsTable td:nth-child(1) { width: 120px; } 
+.logsTable th:nth-child(2), 
+.logsTable td:nth-child(2) { width: 200px; } 
+.logsTable th:nth-child(3), 
+.logsTable td:nth-child(3) { width: 100px; } 
+.logsTable th:nth-child(4), 
+.logsTable td:nth-child(4) { width: 250px; } 
+.logsTable th:nth-child(5), 
+.logsTable td:nth-child(5) { width: 180px; } 
+.logsTable th:nth-child(6), 
+.logsTable td:nth-child(6) { width: 150px; } 
+.logsTable th:nth-child(7), 
+.logsTable td:nth-child(7) { width: 180px; } 
+
+
+
+.logsTable tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.logsTable tr:hover td {
+    background-color: #f8fafc;
+}
+
+
+
+@media (max-width: 1024px) {
+    .logsTable {
+        min-width: 100%;
+    }
+ 
+}
+
+@media (max-width: 1600px) {
+    .logsTable {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .logsTable th, 
+    .logsTable td {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 1200px) {
+    .logsTable {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+.viewAuditLogs > p {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    background: #f8fafc;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.viewAuditLogs .loading {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    color: #4f46e5;
+}
+
+.viewAuditLogs .error {
+    color: #e53e3e;
+    background: #fff5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #e53e3e;
+    margin: 1rem 0;
+}
+
+.icon {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.actionBadge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    border: 3px solid rgba(79, 70, 229, 0.1);
+    border-top: 3px solid #4f46e5;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}

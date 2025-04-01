@@ -1,11 +1,12 @@
 import React from 'react'
-import Style from "./adminSidebar.module.css"
+import Style from "./adminDashboard.module.css"
 
 function AdminDashboard() {
   return (
-    <div>
-      
-    </div>
+      <div className={Style.dashboard}>
+                  <h2>Welcome back, admin!</h2>
+                  <p>Manage clients' credentials securely with SafePass.</p>
+              </div>
   )
 }
 

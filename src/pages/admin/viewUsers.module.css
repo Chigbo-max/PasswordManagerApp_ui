@@ -1,0 +1,193 @@
+.viewUsers {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+    width: 100%;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.searchContainer {
+    position: relative;
+    min-width: 250px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    background-color: #f8fafc;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #36d7b7;
+    box-shadow: 0 0 0 2px rgba(54, 215, 183, 0.2);
+    background-color: white;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    background: linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+                linear-gradient(to left, white 30%, rgba(255,255,255,0));
+    background-position: left center, right center;
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%;
+    background-attachment: local, local;
+}
+
+.usersTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.95rem;
+    background: white;
+}
+
+.usersTable th, 
+.usersTable td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.usersTable th {
+    background-color: #4f46e5;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.usersTable tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.usersTable tr:hover td {
+    background-color: #f8fafc;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.activeStatus {
+    background-color: #e6f7ee;
+    color: #10b981;
+    border: 1px solid #a7f3d0;
+}
+
+.suspendedStatus {
+    background-color: #fff4f4;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+}
+
+.expiredStatus {
+    background-color: #fff7ed;
+    color: #f97316;
+    border: 1px solid #fed7aa;
+}
+
+.deactivatedStatus {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+}
+
+.defaultStatus {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+}
+
+.icon {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.viewUsers > p {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    background: #f8fafc;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    color: #36d7b7;
+}
+
+.spinner {
+    border: 3px solid rgba(54, 215, 183, 0.1);
+    border-top: 3px solid #36d7b7;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    color: #ef4444;
+    background: #fff5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #ef4444;
+}
+
+@media (max-width: 768px) {
+    .headerContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .searchContainer {
+        width: 100%;
+        max-width: 100%;
+    }
+}
