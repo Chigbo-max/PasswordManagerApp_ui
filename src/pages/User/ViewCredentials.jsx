@@ -12,6 +12,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import styles from "./viewcredentials.module.css"
+import { validatePassword } from '../../reusables/Validator';
+
 
 Modal.setAppElement('#root');
 
@@ -21,6 +23,8 @@ const ViewCredentials = () => {
     const [updateCredentials] = useUpdateCredentialsMutation();
     const [visiblePasswords, setVisiblePasswords] = useState({});
     const [editingCredential, setEditingCredential] = useState(null);
+    const [passwordTouched, setPasswordTouched] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
     const [editFormData, setEditFormData] = useState({
         master_password: '',
         new_website: '',
@@ -79,6 +83,10 @@ const ViewCredentials = () => {
             ...prev,
             [name]: value
         }));
+
+        if (name === 'new_password') {
+            setPasswordTouched(true);
+        }
     };
 
     const handleUpdate = async (e) => {
@@ -87,6 +95,25 @@ const ViewCredentials = () => {
         if (!editFormData.master_password) {
           toast.error('Master password is required');
           return;
+        }
+
+
+        if (editFormData.new_password) {
+            const passwordValidation = validatePassword(editFormData.new_password);
+            if (!passwordValidation.isValid) {
+                toast.error(
+                    <div>
+                        <strong>Password requirements:</strong>
+                        <ul style={{ marginTop: '5px', paddingLeft: '20px' }}>
+                            {passwordValidation.messages.map((msg, i) => (
+                                <li key={i}>{msg}</li>
+                            ))}
+                        </ul>
+                    </div>,
+                    { autoClose: 5000 }
+                );
+                return;
+            }
         }
       
         try {
@@ -127,6 +154,14 @@ const ViewCredentials = () => {
     }
 
     const credentialsList = data?.credentials || [];
+
+
+    const passwordValidation = editFormData.new_password ? 
+    validatePassword(editFormData.new_password) : 
+    { isValid: true, messages: [] };
+
+const isPasswordValid = passwordValidation.isValid || !passwordTouched;
+
 
     return (
         <div className={styles.viewCredentials}>
@@ -194,6 +229,10 @@ const ViewCredentials = () => {
                                 ))}
                             </tbody>
                         </table>
+
+
+
+                        
                         <Modal
                             isOpen={isModalOpen}
                             onRequestClose={() => setIsModalOpen(false)}
@@ -231,14 +270,36 @@ const ViewCredentials = () => {
                                     />
                                 </div>
                                 <div className={styles.formGroup}>
-                                    <label>New Password</label>
-                                    <input
-                                        type="password"
-                                        name="new_password"
-                                        value={editFormData.new_password}
-                                        onChange={handleEditChange}
-                                    />
-                                </div>
+                    <label>New Password</label>
+                    <div className={styles.passwordContainer}>
+                        <input
+                            type={showNewPassword ? "text" : "password"}
+                            name="new_password"
+                            value={editFormData.new_password}
+                            onChange={handleEditChange}
+                            className={!isPasswordValid ? styles.passwordError : ''}
+                            maxLength={29}
+                        />
+                        <button
+                            type="button"
+                            className={styles.passwordToggle}
+                            onClick={() => setShowNewPassword(!showNewPassword)}
+                            aria-label={showNewPassword ? "Hide password" : "Show password"}
+                        >
+                            {showNewPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                    </div>
+                    {passwordTouched && !passwordValidation.isValid && (
+                        <div className={styles.passwordRequirements}>
+                            <p>Password must contain:</p>
+                            <ul>
+                                {passwordValidation.messages.map((msg, i) => (
+                                    <li key={i}>{msg}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
                                 <div className={styles.modalButtons}>
                                     <button type="button" onClick={() => setIsModalOpen(false)}>
                                         Cancel
