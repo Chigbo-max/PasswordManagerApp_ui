@@ -1,10 +1,9 @@
 import { useSaveCredentialsMutation } from "../../services/PasswordManagerApi";
 import { ClipLoader } from "react-spinners";
-import Button from "../../reusables/Button";
 import Style from "./savecredentials.module.css";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FiEye, FiEyeOff } from "react-icons/fi"; 
 import { validatePassword } from "../../reusables/Validator";
 
 const initialFormData = {
@@ -56,6 +55,7 @@ const SaveCredentials = () => {
             toast.success('Credentials saved successfully!');
             setFormData(initialFormData);
             setPasswordTouched(false);
+            setShowPassword(false);
         } catch (error) {
             if (error.status === 401) {
                 toast.error("Please log in again.");
@@ -77,7 +77,7 @@ const SaveCredentials = () => {
                     name="website"
                     value={formData.website}
                     onChange={handleChange}
-                    placeholder="Website (e.g. instagram.com)"
+                    placeholder="Website (e.g., instagram.com)"
                     required
                 />
 
@@ -106,7 +106,7 @@ const SaveCredentials = () => {
                         onClick={() => setShowPassword(!showPassword)}
                         aria-label={showPassword ? "Hide password" : "Show password"}
                     >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        {showPassword ? <FiEyeOff /> : <FiEye />}
                     </button>
                 </div>
 
@@ -121,12 +121,13 @@ const SaveCredentials = () => {
                     </div>
                 )}
 
-                <Button
+                <button
                     type="submit"
                     className={Style.button}
                     disabled={isLoading}
-                    action={isLoading ? <ClipLoader color="#ffff" size={50} /> : 'Save Credentials'}
-                />
+                >
+                    {isLoading ? <ClipLoader color="#4f46e5" size={20} /> : 'Save Credentials'}
+                </button>
             </form>
         </div>
     );

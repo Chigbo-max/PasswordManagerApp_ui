@@ -17,7 +17,7 @@ function ForgetPassword() {
                 toast.success("Reset password link sent to your email address");
                 setEmail("");
             } catch (error) {
-                toast.error("Failed to send reset password link. Please try again.", error);
+                toast.error('Failed to send reset link: ' + (error.data?.message || 'Failed to send reset password link. Please try again.'));
             }
         }
     };
@@ -27,7 +27,6 @@ function ForgetPassword() {
         <p>No worries...</p>
         <form className={Style.form} onSubmit={handleSubmit}>
         <div className={Style.formGroup}>
-        {/* <label htmlFor="email"></label> */}
         <input type = "email"
         id="email"
         value={email}

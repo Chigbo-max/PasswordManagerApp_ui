@@ -21,10 +21,7 @@
     transition: color 0.2s ease;
 }
 
-.toggleButton:hover {
-    color: red;
-    background-color: white;
-}
+
 
 /* .toggleButton:focus {
     outline: none;
@@ -68,6 +65,12 @@
     color: white;
     margin-right: 1rem;
 }
+
+.hamburger:hover{
+    background-color: transparent;
+}
+
+
 
 /* .sidebar.active {
     left: 0; 
@@ -211,6 +214,10 @@ button:disabled {
     .sidebar.active ~ .mainContent .contentWrapper {
       width: calc((100vw / 0.7) - 2rem);
     }
+
+    .sidebar:hover{
+        background-color: transparent;
+        }
   }
 
 
@@ -253,6 +260,8 @@ button:disabled {
     .toggleButton {
         font-size: 0.9rem;
     }
+
+  
 }
 
 @media (max-width: 768px) {
@@ -278,6 +287,8 @@ button:disabled {
         display: block;
     }
 
+  
+
     .mainContent {
         margin-left: 0;
         padding: 1rem;
@@ -285,6 +296,10 @@ button:disabled {
     }
     .mainContent.sidebarOpen {
         margin-left: 250px;
+    }
+
+    .mainContent.sidebarOpen:hover{
+        background-color: transparent;
     }
 
     .sidebar.active ~ .mainContent .credentialsTable {

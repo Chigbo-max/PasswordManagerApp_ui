@@ -1,0 +1,150 @@
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.49);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    max-width: 480px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.cardHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.cardIcon {
+    font-size: 2.5rem;
+    color: rgb(20, 18, 62);
+    margin-bottom: 1rem;
+}
+
+.cardTitle {
+    font-size: 1.75rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.cardSubtitle {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.inputGroup {
+    position: relative;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    font-size: 1.1rem;
+}
+
+.input {
+    width: 100%;
+    max-width: 430px;
+    padding: 0.9rem 0rem 0.9rem 2.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    background-color: #f8fafc;
+    color: #2d3748;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #36d7b7;
+    box-shadow: 0 0 0 3px rgba(54, 215, 183, 0.2);
+    background-color: white;
+}
+
+.input::placeholder {
+    color: #a0aec0;
+}
+
+/* Button Styles */
+.submitButton {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #36d7b7;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.submitButton:hover {
+    background-color: #2ab59d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(54, 215, 183, 0.3);
+}
+
+.submitButton:active {
+    transform: translateY(0);
+}
+
+.submitButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.warningButton {
+    background-color: #f6ad55;
+}
+
+.warningButton:hover {
+    background-color: #f39c12;
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+}
+
+.dangerButton {
+    background-color: #f56565;
+}
+
+.dangerButton:hover {
+    background-color: #e53e3e;
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .cardTitle {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1.25rem;
+    }
+    
+    .input {
+        padding: 0.8rem 1rem 0.8rem 2.5rem;
+    }
+    
+    .submitButton {
+        padding: 0.9rem;
+    }
+}

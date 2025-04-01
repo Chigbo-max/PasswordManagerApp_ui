@@ -1,0 +1,66 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.padlockContainer {
+    background:  #00aaff;; 
+    border-radius: 8px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.padlockIcon {
+    color: #d1d5db; 
+    font-size: 1.5rem;
+}
+
+.logoText {
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+}
+
+
+
+.safe {
+    color: #00aaff;
+}
+
+.pass {
+    color: #4f46e5; 
+}
+
+@media (max-width: 768px) {
+    .logoText {
+        font-size: 1.5rem;
+    }
+
+    .padlockIcon {
+        font-size: 1.3rem;
+    }
+
+    .padlockContainer {
+        padding: 0.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logoText {
+        font-size: 1.3rem;
+    }
+
+    .padlockIcon {
+        font-size: 1.1rem;
+    }
+
+    .padlockContainer {
+        padding: 0.3rem;
+    }
+}

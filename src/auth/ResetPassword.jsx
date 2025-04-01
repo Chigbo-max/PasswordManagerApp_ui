@@ -44,8 +44,7 @@ function ResetPassword() {
         navigate("/login")
       }, 2000);
     }catch (error){
-      toast.error("Failed to reset password, please try again", error)
-      // setNewPassword("")
+      toast.error('Failed to rest password' + (error.data?.message || 'Failed to reset password, please try again'));
     }
   };
 

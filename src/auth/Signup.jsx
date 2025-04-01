@@ -48,15 +48,12 @@ function SignUp() {
             localStorage.setItem("access_token", response.access_token);
             localStorage.setItem("role", response.role);
             toast.success("Sign up successful... redirecting")
-            // setSuccessMessage("Sign up successful... redirecting");
-
             setTimeout(() => {
                 response.role === "admin" ? navigate("/admin/dashboard") : navigate("/account/dashboard");
             }, 2000);
         } catch (error) {
-            toast.error("Sign up unsuccessful:", error)
-            // console.log("Sign up unsuccessful:", error);
-            // setSuccessMessage("");
+                toast.error('Sign up unsuccessful: ' + (error.data?.message || 'Sign up unsuccessful'));
+
         }
     };
 

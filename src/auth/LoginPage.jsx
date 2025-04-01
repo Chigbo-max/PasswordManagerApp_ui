@@ -54,7 +54,7 @@ function loginPage() {
                 response.role === "admin" ? navigate("/admin/dashboard") : navigate("/account/dashboard");
             }, 2000);
         } catch (error) {
-            toast.error("Login unsuccessful. Please check your email/password")
+            toast.error('Login unsuccessful: ' + (error.data?.message || 'Login unsuccessful'));
         }
     }
 

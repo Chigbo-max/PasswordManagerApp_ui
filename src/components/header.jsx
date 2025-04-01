@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './header.module.css';
-import logo from '../assets/safepass.jpg';
+import Logo from './logo';
 
 const header = () => {
     const navigate = useNavigate();
@@ -16,8 +16,8 @@ const header = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.logo}>
-                <Link to="/">
-                    <img src={logo} alt="SafePass Logo" />
+                <Link className={styles.logolink}to="/">
+                <Logo/>
                 </Link>
             </div>
             <ul className={styles.navLinks}>

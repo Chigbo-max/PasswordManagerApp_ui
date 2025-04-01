@@ -237,7 +237,6 @@ const ViewCredentials = () => {
                 </div>
             )}
 
-            {/* Edit Modal */}
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
@@ -316,7 +315,6 @@ const ViewCredentials = () => {
                 </form>
             </Modal>
 
-            {/* Delete Confirmation Modal */}
             <Modal
                 isOpen={!!deleteConfirm}
                 onRequestClose={() => setDeleteConfirm(null)}

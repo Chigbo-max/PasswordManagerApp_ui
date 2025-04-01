@@ -1,6 +1,6 @@
 .navbar {
     height: 60px;
-    background-color: #2c3e50;
+    background-color:rgb(20, 18, 62);
     position: fixed;
     top: 0;
     left: 0;
@@ -14,8 +14,9 @@
     justify-content: space-between;
 
 }
-.logo img {
-    height: 40px;
+
+.logolink{
+    text-decoration: none;
 }
 
 .navLinks {
