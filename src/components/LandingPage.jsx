@@ -16,7 +16,7 @@ const LandingPage = () => {
                 <section className={styles.features}>
                     <div className={styles.feature}>
                         <FiLock size={40} color="#00aaff" style={{ marginBottom: '1rem' }} />
-                        <h3>Secure Storage</h3>
+                        <h3>Zero Knowledge</h3>
                         <p>Your passwords are encrypted and stored securely.</p>
                     </div>
                     <div className={styles.feature}>
