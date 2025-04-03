@@ -8,11 +8,11 @@ const tips = [
         content: "Never reuse passwords across different sites. If one gets compromised, all your accounts are at risk.",
         icon: "🔑"
     },
-    {
-        title: "Enable 2FA",
-        content: "Two-factor authentication adds an extra layer of security beyond just passwords.",
-        icon: "🛡️"
-    },
+    // {
+    //     title: "Enable 2FA",
+    //     content: "Two-factor authentication adds an extra layer of security beyond just passwords.",
+    //     icon: "🛡️"
+    // },
     {
         title: "Beware of Phishing",
         content: "Always check URLs before entering credentials. Legitimate sites won't ask for passwords via email.",

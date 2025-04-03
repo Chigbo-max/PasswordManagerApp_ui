@@ -1,13 +1,132 @@
-import React, { useState } from 'react';
-import styles from './dashboard.module.css';
 
+import React, { useEffect, useState } from 'react';
+import styles from './dashboard.module.css';
+import { FaShieldAlt, FaKey, FaClock, FaChartLine, FaBell } from 'react-icons/fa';
+import { RiLockPasswordFill } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import PasswordStrengthMeter from '../../components/PasswordStrengthMeter';
+import SecurityTipsCarousel from '../../components/SecurityTipsCarousel';
+import CredentialChart from '../../components/CredentialChart';
+import { useGetCredentialsQuery } from '../../services/PasswordManagerApi';
 
 const Dashboard = () => {
-    
+    const { data, error, isLoading, isError } = useGetCredentialsQuery();
+    const [stats, setStats] = useState({
+        totalCredentials: 0,
+        weakPasswords: 0,
+        recentActivity: []
+    });
+
+    useEffect(() => {
+        if (data) {
+            const credentials = data.credentials || [];
+            const weakPasswords = credentials.filter(cred => cred.strength === 'weak').length;
+
+            setStats({
+                totalCredentials: credentials.length,
+                weakPasswords: weakPasswords,
+                recentActivity: credentials.slice(0, 3).map((cred, index) => ({
+                    id: index,
+                    action: 'Updated',
+                    site: cred.website,
+                    username: cred.username,
+                    time: 'Recently'
+                }))
+            });
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(`Failed to load credentials: ${error?.data?.message || error.message}`);
+        }
+    }, [isError, error]);
+
     return (
-        <div className={styles.dashboard}>
-            <h2>Welcome back!</h2>
-            <p>Manage your credentials securely with SafePass.</p>
+        <div className={styles.dashboardLayout}>
+            <main className={styles.mainContent}>
+                <header className={styles.dashboardHeader}>
+                    <h1>Welcome back!</h1>
+                    <p>Here's what's happening with your credentials</p>
+                </header>
+
+                {isLoading ? (
+                    <div className={styles.loadingIndicator}>
+                        <div className={styles.spinner}></div>
+                        <p>Loading your dashboard...</p>
+                    </div>
+                ) : (
+                    <>
+                        <div className={styles.statsGrid}>
+                            <div className={`${styles.statCard} ${styles.primary}`}>
+                                <div className={styles.statIcon}>
+                                    <RiLockPasswordFill />
+                                </div>
+                                <div className={styles.statContent}>
+                                    <h3>{stats.totalCredentials}</h3>
+                                    <p>Saved Credentials</p>
+                                </div>
+                            </div>
+
+                            <div className={`${styles.statCard} ${styles.warning}`}>
+                                <div className={styles.statIcon}>
+                                    <FaShieldAlt />
+                                </div>
+                                <div className={styles.statContent}>
+                                    <h3>{stats.weakPasswords}</h3>
+                                    <p>Weak Passwords</p>
+                                </div>
+                            </div>
+
+                            <div className={`${styles.statCard} ${styles.success}`}>
+                                <div className={styles.statIcon}>
+                                    <FaClock />
+                                </div>
+                                <div className={styles.statContent}>
+                                    <h3>{stats.recentActivity.length}</h3>
+                                    <p>Recent Activities</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.contentGrid}>
+                            <div className={styles.activityCard}>
+                                <div className={styles.cardHeader}>
+                                    <h3><FaBell /> Recent Activity</h3>
+                                </div>
+                                <ul className={styles.activityList}>
+                                    {stats.recentActivity.map(activity => (
+                                        <li key={activity.id} className={styles.activityItem}>
+                                            <span className={styles.activityAction}>{activity.action}</span>
+                                            <span className={styles.activitySite}>{activity.site}</span>
+                                            <span className={styles.activitySite}>{activity.username}</span>
+                                            <span className={styles.activityTime}>{activity.time}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className={styles.healthCard}>
+                                <div className={styles.cardHeader}>
+                                    <h3><FaChartLine /> Password Health</h3>
+                                </div>
+                                <div className={styles.chartContainer}>
+                                    <CredentialChart weak={stats.weakPasswords} strong={stats.totalCredentials - stats.weakPasswords} />
+                                </div>
+                                <PasswordStrengthMeter />
+                            </div>
+
+                            {/* Security Tips */}
+                            <div className={styles.tipsCard}>
+                                <div className={styles.cardHeader}>
+                                    <h3><FaShieldAlt /> Security Tips</h3>
+                                </div>
+                                <SecurityTipsCarousel />
+                            </div>
+                        </div>
+                    </>
+                )}
+            </main>
         </div>
     );
 };
@@ -24,19 +143,21 @@ export default Dashboard;
 
 
 
+// import React, { useState } from 'react';
+// import styles from './dashboard.module.css';
 
 
+// const Dashboard = () => {
+    
+//     return (
+//         <div className={styles.dashboard}>
+//             <h2>Welcome back!</h2>
+//             <p>Manage your credentials securely with SafePass.</p>
+//         </div>
+//     );
+// };
 
-
-
-
-
-
-
-
-
-
-
+// export default Dashboard;
 
 
 
